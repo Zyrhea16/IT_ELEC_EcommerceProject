@@ -71,7 +71,4 @@ return [
 
     'livewire_loading_delay' => 'default',
 
-    'fonts' => [
-        'load_google_fonts' => false,
-    ],
 ];
