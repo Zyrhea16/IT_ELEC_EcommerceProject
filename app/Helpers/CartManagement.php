@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Helpers;
 use Illuminate\Support\Facades\Cookie;
+use App\Models\Product;
 
 class CartManagement
 {
@@ -19,7 +20,6 @@ class CartManagement
 
         if ($existing_item !== null) {
             $cart_items[$existing_item]['quantity']++;
-            // NOTE: 'total_amount' calculation appears incomplete in the image
             $cart_items[$existing_item]['total_amount'] = $cart_items[$existing_item]['quantity'] * $cart_items[$existing_item]['unit_amount'];
         } else {
             $product = Product::where('id', $product_id)->first(['id', 'name', 'price', 'images']);
