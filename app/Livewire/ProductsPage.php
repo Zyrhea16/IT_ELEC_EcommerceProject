@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Livewire;
 
 use App\Helpers\CartManagement;
@@ -10,14 +11,12 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 
 #[Title('Products - DCodeMania')]
 class ProductsPage extends Component
 {
     use WithPagination;
-
-    use LivewireAlert;
 
     #[Url] 
     public $selected_categories = []; 
@@ -36,16 +35,19 @@ class ProductsPage extends Component
 
     public $sort = 'latest';
 
-    public function addToCart($product_id) {
-       $total_count = CartManagement::addItemToCart($product_id);
+    public function addToCart($product_id) 
+    {
+        $total_count = CartManagement::addItemToCart($product_id);
 
-       $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);
+        $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);
 
-       $this->alert('success', 'Product added to the cart successfully!', [
-            'position' => 'bottom-end',
-            'timer' => 3000,
-            'toast' => true,
-        ]);
+        LivewireAlert::success()
+            ->title('Success!')
+            ->text('Product added to the cart successfully!')
+            ->toast()
+            ->position('bottom-end')
+            ->timer(3000)
+            ->show();
     }
 
     public function render()
