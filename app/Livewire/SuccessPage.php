@@ -12,6 +12,10 @@ use Stripe\Stripe;
 #[Title('Success - Zyrhea')]
 class SuccessPage extends Component
 {
+
+    #[Url]
+    public $session_id;
+
     public function render()
     {
         $latest_order = Order::with('address')->where('user_id', auth()->user()->id)->latest()->first();
