@@ -49,7 +49,7 @@
           </div>
           <div class="mt-1 flex items-center gap-x-2">
             <h3 class="text-xl font-medium text-gray-800 dark:text-gray-200">
-              {{ $order_items[0]->created_at->format('d-m-Y') }}
+              {{ $order->created_at->format('d-m-Y') }}
             </h3>
           </div>
         </div>
@@ -120,17 +120,17 @@
           <div class="mt-1 flex items-center gap-x-2">
             @php
               $payment_status = '';
-                if($order->status == 'pending'){
+                if($order->payment_status == 'pending'){
                       $payment_status = ' <span class="bg-blue-500 py-1 px-3 rounded text-white shadow">Pending</span>';
                     }
-                    if($order->status == 'paid'){
+                    if($order->payment_status == 'paid'){
                       $payment_status = ' <span class="bg-green-600 py-1 px-3 rounded text-white shadow">Paid</span>';
                     }
-                    if($order->status == 'failed'){
-                      $payment_status = ' <span class="bg-green-600 py-1 px-3 rounded text-white shadow">Failed</span>';
+                    if($order->payment_status == 'failed'){
+                      $payment_status = ' <span class="bg-red-600 py-1 px-3 rounded text-white shadow">Failed</span>';
                     }
             @endphp
-            {{!! $payment_status !!}}
+            {!! $payment_status !!}
           </div>
         </div>
       </div>
@@ -195,7 +195,7 @@
         <h2 class="text-lg font-semibold mb-4">Summary</h2>
         <div class="flex justify-between mb-2">
           <span>Subtotal</span>
-          <span>{{ Number::currency($item->order->grand_amount, 'INR') }}</span>
+          <span>{{ Number::currency($order->grand_total, 'INR') }}</span>
         </div>
         <div class="flex justify-between mb-2">
           <span>Taxes</span>
@@ -208,7 +208,7 @@
         <hr class="my-2">
         <div class="flex justify-between mb-2">
           <span class="font-semibold">Grand Total</span>
-          <span class="font-semibold">{{ Number::currency($item->order->grand_amount, 'INR') }}</span>
+          <span class="font-semibold">{{ Number::currency($order->grand_total, 'INR') }}</span>
         </div>
 
       </div>

@@ -17,11 +17,11 @@
           <form wire:submit.prevent='save'>
             <div class="grid gap-y-4">
               <!-- Form Group -->
-
+ 
               <div>
                 <label for="name" class="block text-sm mb-2 dark:text-white">Name</label>
                 <div class="relative">
-                  <input type="text" id="name" wire:model name="name" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" aria-describedby="email-error">
+                  <input type="text" id="name" wire:model="name" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" aria-describedby="email-error">
                     @error('name')
                         <div class=" absolute inset-y-0 end-0 flex items-center pointer-events-none pe-3">
                           <svg class="h-5 w-5 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">

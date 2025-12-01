@@ -6,7 +6,7 @@ use App\Filament\Resources\OrderResource;
 use App\Filament\Resources\OrderResource\Widgets\OrderStats;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Forms\Components\Tabs\Tab;
+use Filament\Resources\Components\Tab;
 
 class ListOrders extends ListRecords {
     protected static string $resource = OrderResource::class;

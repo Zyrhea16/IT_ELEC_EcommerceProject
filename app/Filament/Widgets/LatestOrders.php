@@ -15,6 +15,7 @@ class LatestOrders extends BaseWidget
     protected int | string | array $columnSpan = 'full';
 
     protected static ?int $sort = 2;
+
     public function table(Table $table): Table
     {
         return $table
@@ -28,7 +29,7 @@ class LatestOrders extends BaseWidget
                     ->searchable(),
 
                 TextColumn::make('grand__total')
-                ->money('INR'),
+                    ->money('INR'),
 
                 TextColumn::make('status')
                     ->badge()
@@ -37,19 +38,23 @@ class LatestOrders extends BaseWidget
                         'processing' => 'warning',
                         'shipped' => 'success',
                         'delivered' => 'success',
-                        'cancelled' => 'danger'
+                        'cancelled' => 'danger',
+                        default => 'gray',
                     })
                     ->icon(fn (string $state): string => match ($state) {
                         'new' => 'heroicon-m-sparkles',
                         'processing' => 'heroicon-m-arrow-path',
                         'shipped' => 'heroicon-m-truck',
                         'delivered' => 'heroicon-m-check-badge',
-                        'cancelled' => 'heroicon-m-x-circle'
+                        'cancelled' => 'heroicon-m-x-circle',
+                        default => null,
                     })
                     ->sortable(),
+
                 TextColumn::make('payment_method')
                     ->sortable()
                     ->searchable(),
+
                 TextColumn::make('payment_status')
                     ->sortable()
                     ->badge()
@@ -57,12 +62,12 @@ class LatestOrders extends BaseWidget
 
                 TextColumn::make('created_at')
                     ->label('Order Date')
-                    ->dateTime()
-                ->actions([
+                    ->dateTime(),
+            ]) // <--- CLOSED COLUMNS HERE
+            ->actions([ // <--- MOVED ACTIONS HERE
                 Action::make('View Order')
                     ->url(fn (Order $record): string => OrderResource::getUrl('view', ['record' => $record]))
                     ->icon('heroicon-m-eye'),
-            ])
-        ]);
+            ]);
     }
 }

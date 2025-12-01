@@ -4,6 +4,8 @@ export default {
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
     "./resources/**/*.vue",
+    "./vendor/filament/**/*.blade.php",
+    "./app/Filament/**/*.php",
     "node_modules/preline/dist/*.js",
   ],
   darkMode: 'class',

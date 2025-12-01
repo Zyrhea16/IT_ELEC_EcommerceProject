@@ -86,7 +86,7 @@ class CheckoutPage extends Component
 
         if($this->payment_method == 'stripe')
         {
-            Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+            Stripe::setApiKey(env('STRIPE_SECRET'));
             $sessionCheckout = Session::create([
                 'payment_method_types' => ['card'],
                 'customer_email' => auth()->user()->email,
